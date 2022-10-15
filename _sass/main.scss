@@ -78,7 +78,7 @@ body {
 
     &:hover {
         cursor: default;
-        background-color: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 12%));
+        background-color: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 10%));
     }
 
     &__flexbox {
