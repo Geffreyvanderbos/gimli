@@ -1,18 +1,23 @@
 :root {
+    // Change these colours to match your need. They are expressed in [h]ue, [s]aturation, and [l]ightness
+    // Cheatsheet (imagine the colours transition in-between: 
+    // Hue: 1 = red, 30 = orange, 100 = green, 170 = light blue, 240 = blue, 300 = pink, 359 = red again.
+
     --base-h: 222;
     --base-s: 20%;
     --base-l: 15%;
     
-    --accent-h: 194;
-    --accent-s: 37%;
+    --accent-h: 222;
+    --accent-s: 47%;
     --accent-l: 88%;
+
+    --minimum-width-link: 16rem;
+    --columnn-and-row-gap: 1.35rem;
+
 
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
     --text-color: hsl(var(--base-h), 20%, 92%);
     --border-color: hsl(var(--accent-h), 4%, 28%);
-
-    --minimum-width-link: 16rem;
-    --columnn-and-row-gap: 1.25rem;
 
     --easing: cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -36,9 +41,8 @@ body {
     background-size: cover;
     mix-blend-mode: soft-light;
     opacity: 20%;
-    filter: grayscale(70%);
+    filter: grayscale(60%);
 
-	
     position: fixed;
     top: 0;
     left: 0;
@@ -46,11 +50,17 @@ body {
 }
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    min-height: 100vh;
     max-width: 1080px;
     margin: 0 auto;
     padding: 1rem;
     position: relative;
     z-index: 2;
+    box-sizing: border-box;
 }
 
 .grid {
@@ -62,7 +72,7 @@ body {
 .link {
     color: var(--text-color);
     text-decoration: none;
-    background-color: hsla(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 6%), .4);
+    background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 60%), .3);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -73,12 +83,16 @@ body {
         0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16),
         0 4px 30px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 1.25rem 1.5rem 1.25rem 1.4rem;
-    transition: background-color .145s var(--easing);
+    padding: 1.35rem 1.5rem 1.25rem 1.2rem;
+    transition: background-color .145s var(--easing), transform .065s var(--easing);
 
     &:hover {
         cursor: default;
-        background-color: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 10%));
+        background-color: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
+    }
+
+    &:active {
+        transform: scale(.99);
     }
 
     &__flexbox {
@@ -102,6 +116,6 @@ body {
     }
     
     &__description {
-        
+       color: hsla(var(--base-h), 20%, 92%, 0.7);
     }
 }

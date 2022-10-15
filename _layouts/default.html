@@ -10,10 +10,10 @@ layout: default
 </head>
 
 <body class="">
-    <div class="background-image" style="background-image: url({{site.backgroundImage}})"></div>
+    {% unless site.backgroundImage == "" %}
+        <div class="background-image" style="background-image: url({{site.backgroundImage}})"></div>
+    {% endunless %}
     <div class="wrapper">
-        <p>In Norse mythology, Gimlé (alternately Gimli as in Icelandic) is a place where the worthy survivors of Ragnarök are foretold to live. It is mentioned in the Prose Edda and the Eddic poem "Völuspá" and described as the most beautiful place in Asgard, more beautiful than the sun.
-        </p>
         <div class="grid">
         {% unless site.links == "" %}
             {% include links.html %}
