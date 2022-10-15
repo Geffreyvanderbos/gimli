@@ -1,0 +1,107 @@
+:root {
+    --base-h: 222;
+    --base-s: 20%;
+    --base-l: 15%;
+    
+    --accent-h: 194;
+    --accent-s: 37%;
+    --accent-l: 88%;
+
+    --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
+    --text-color: hsl(var(--base-h), 20%, 92%);
+    --border-color: hsl(var(--accent-h), 4%, 28%);
+
+    --minimum-width-link: 16rem;
+    --columnn-and-row-gap: 1.25rem;
+
+    --easing: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Raleway', sans-serif;
+    line-height: 150%;
+}
+
+.background-image {
+    min-height: 100%;
+    min-width: 1024px;
+	
+    width: 100%;
+    height: auto;
+
+    background-size: cover;
+    mix-blend-mode: soft-light;
+    opacity: 20%;
+    filter: grayscale(70%);
+
+	
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--minimum-width-link), 1fr));
+    gap: var(--columnn-and-row-gap);
+}
+
+.link {
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: hsla(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 6%), .4);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+
+    box-shadow: 
+        0 22px 34px -20px hsla(var(--base-h), calc(var(--base-s) - 15%), calc(var(--base-l) - 20%), .24),
+        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16),
+        0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem 1.25rem 1.4rem;
+    transition: background-color .145s var(--easing);
+
+    &:hover {
+        cursor: default;
+        background-color: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) + 12%));
+    }
+
+    &__flexbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__icon {
+        margin-right: .8rem;
+
+        .material-symbols-outlined {
+            font-size: 32px;
+        }
+    }
+    
+    &__title {
+        font-weight: 600;
+        display: block;
+    }
+    
+    &__description {
+        
+    }
+}

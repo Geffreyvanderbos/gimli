@@ -1,0 +1,25 @@
+{% for link in site.links %}
+
+        {% if link.URL %}
+                <a href="{{link.URL}}" rel="noopener noreferrer" class="link">
+                        
+                        <div class="link__flexbox">
+                                {{if site.loadExternal }}
+                                <div class="link__icon">
+                                        <span class="material-symbols-outlined">
+                                                {{link.Icon}}
+                                        </span>
+                                </div>
+                                {{ endif }}
+                                <div>
+                                        <span class="link__title">
+                                                {{link.Name}}
+                                        </span>
+                                        <span class="link__description">
+                                                {{link.Description}}
+                                        </span>
+                                </div>
+                        </div>
+                </a>
+        {% endif %}
+{% endfor %}
