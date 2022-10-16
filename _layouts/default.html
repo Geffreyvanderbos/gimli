@@ -14,6 +14,9 @@ layout: default
         <div class="background-image" style="background-image: url({{site.backgroundImage}})"></div>
     {% endunless %}
     <div class="wrapper">
+        <div class="filter">
+            <input id="filterInput" class="filter__input" type="text" autofocus />
+         </div>
         <div class="grid">
         {% unless site.links == "" %}
             {% include links.html %}
@@ -23,5 +26,59 @@ layout: default
 {% if site.loadExternal == true %}
     {% include external.html %}
 {% endif %}
+<script>
+elFilterInput = document.getElementById("filterInput")
+elFilterInput.addEventListener("keyup", filterTextInput);
+elFilterInput.addEventListener("blur", hideFilterInput);
+elFilterInput.addEventListener("focus", focusFilterInput);
+
+
+function filterTextInput() {
+    var input, inputQuery, dataContent, i, linkList;
+    input = elFilterInput;
+    inputQuery = input.value.toUpperCase();
+    linkList = document.querySelectorAll(".link");
+	
+  for (i = 0; i < linkList.length; i++) {
+    dataContent = linkList[i].getAttribute('data-content');
+    if (dataContent) {
+      if (dataContent.toUpperCase().indexOf(inputQuery) > -1) {
+        linkList[i].style.opacity = "";
+      } else {
+        linkList[i].style.opacity = ".2";
+      }
+    } 
+  }
+}
+
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == 32) {
+        if (document.activeElement.nodeName.toLowerCase() != elFilterInput) {
+            e.preventDefault();
+            elFilterInput.focus();
+        }
+    }
+}, true);
+
+function hideFilterInput() {
+    elFilterInput.classList.remove("filter__input--appear");
+    elFilterInput.classList.add("filter__input--hidden");
+    elFilterInput.value = "";
+
+    linkList = document.querySelectorAll(".link");
+    for (i = 0; i < linkList.length; i++) { 
+        linkList[i].style.opacity = ""; 
+    }
+}
+
+
+function focusFilterInput() {
+    elFilterInput.classList.add("filter__input--appear");
+    elFilterInput.classList.remove("filter__input--hidden");
+}
+
+
+
+</script>
 </body>
 </html>

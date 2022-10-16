@@ -22,6 +22,10 @@
     --easing: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -60,7 +64,60 @@ body {
     padding: 1rem;
     position: relative;
     z-index: 2;
-    box-sizing: border-box;
+}
+
+.filter__input {
+    width: 100%;
+    max-width: 1048px;
+    background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 60%), .4);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1rem;
+    outline-style: none;
+    position: fixed;
+    top: 8vh;
+    z-index: 3;
+
+    &--appear {
+        opacity: 1;
+        filter: blur(0);
+        animation: blur-appear .265s cubic-bezier(0.32, 0, 0.67, 0) forwards;
+        box-shadow: 
+        0 22px 34px -20px hsla(var(--base-h), calc(var(--base-s) - 15%), calc(var(--base-l) - 20%), .36),
+        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .24);
+    }
+
+    &--hidden {
+        opacity: 0;
+        filter: blur(5em);
+        animation: blur-disappear .665s cubic-bezier(0.61, 1, 0.88, 1) forwards;
+    }
+}
+
+@keyframes blur-disappear {
+    0%  { 
+        opacity: 1;
+        filter: blur(0px); 
+    }
+    100% { 
+        opacity: 0;
+        filter: blur(5em);
+    }
+}
+
+@keyframes blur-appear {
+    0%  { 
+        opacity: 0;
+        filter: blur(5em);
+    }
+    100% { 
+        opacity: 1;
+        filter: blur(0px); 
+    }
 }
 
 .grid {
@@ -75,16 +132,15 @@ body {
     background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 60%), .3);
 
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.03);
 
     box-shadow: 
         0 22px 34px -20px hsla(var(--base-h), calc(var(--base-s) - 15%), calc(var(--base-l) - 20%), .24),
-        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16),
-        0 4px 30px rgba(0, 0, 0, 0.1);
+        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16);
+
     border-radius: 8px;
     padding: 1.35rem 1.5rem 1.25rem 1.2rem;
-    transition: background-color .145s var(--easing), transform .065s var(--easing);
+    transition: background-color .145s var(--easing), transform .065s var(--easing), opacity .265s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
         cursor: default;
