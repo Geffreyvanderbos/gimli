@@ -93,7 +93,7 @@ footer {
 
 .wrapper {
     max-width: 1080px;
-    margin: 8vh auto 0 auto;
+    margin: 6vw auto 0 auto;
     padding: 1rem;
     position: relative;
     z-index: 2;
@@ -109,7 +109,6 @@ footer {
     align-items: center;
     justify-content: center;
 }
-
 
 .filter__input {
     width: 100%;
@@ -155,14 +154,6 @@ footer {
         opacity: 0;
         filter: blur(5em);
     }
-}
-
-.enter-indicator {
-    display: block;
-    position: relative;
-    left: -100px;
-    border: 1px solid var(--text-color--muted);
-    padding: 2px 3px;
 }
 
 @keyframes blur-disappear {
