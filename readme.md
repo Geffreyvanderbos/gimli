@@ -1,6 +1,7 @@
 # Gimli – Your Minimalist Startpage for your Server
 
-![[showcase/screenshot_1.png]]
+![A screenshot of Gimli's main page](https://github.com/Geffreyvanderbos/gimli/blob/main/showcase/screenshot_1.png)
+
 ## Description
 Gimli is a static, minimal startpage for your homeserver. It's generated through [Jekyll](https://jekyllrb.com/). It's thoughtfully designed and easy to set-up.
 
