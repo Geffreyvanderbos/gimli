@@ -5,7 +5,7 @@
 
     --base-h: 222;
     --base-s: 20%;
-    --base-l: 20%;
+    --base-l: 15%;
     
     --accent-h: 222;
     --accent-s: 46%;
@@ -17,7 +17,7 @@
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
     --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .4);
     --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 52%));
-    --background-image--opacity: 30%;
+    --background-image--opacity: 40%;
     --background-image--filter: grayscale(60%);
     --text-color: hsl(var(--base-h), 20%, 92%);
     --text-color--muted: hsla(var(--base-h), 20%, 92%, 0.8);
