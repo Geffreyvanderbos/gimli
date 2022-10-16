@@ -28,8 +28,7 @@ layout: default
     <footer>
         <div class="footer-wrapper">
         <span class="hotkey">
-            Press <svg class="hotkey__icon" width="16" height="19" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="a"><path d="M24 0v24H0V0h24Z"/></clipPath><clipPath id="b"><path d="M13 0a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3h10Zm0 1H3a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 3L7.072 16H6L8.928 4H10Z"/></clipPath></defs><g clip-path="url(#a)" transform="translate(-4 -3)"><g clip-path="url(#b)" transform="translate(4 3)"><path d="M0 0h16v19H0V0z"/></g></g></svg>
-            to filter.</span>
+            Press <span class="hotkey__custom">/</span> to filter. Hit <span class="hotkey__custom">enter</span> to navigate to a single match.</span>
         </div>
     </footer>
 {% if site.loadExternal == true %}
@@ -41,24 +40,46 @@ elFilterInput.addEventListener("keyup", filterTextInput);
 elFilterInput.addEventListener("blur", hideFilterInput);
 elFilterInput.addEventListener("focus", focusFilterInput);
 
+var linkResultCount, linkList;
+linkList = document.querySelectorAll(".link");
 
-function filterTextInput() {
-    var input, inputQuery, dataContent, i, linkList;
+function filterTextInput(e) {
+    var input, inputQuery, dataContent, i;
     input = elFilterInput;
     inputQuery = input.value.toUpperCase();
-    linkList = document.querySelectorAll(".link");
-	
-  for (i = 0; i < linkList.length; i++) {
-    dataContent = linkList[i].getAttribute('data-content');
-    if (dataContent) {
-      if (dataContent.toUpperCase().indexOf(inputQuery) > -1) {
-        linkList[i].style.opacity = "";
-      } else {
-        linkList[i].style.opacity = ".2";
-      }
-    } 
-  }
+    
+    for (i = 0; i < linkList.length; i++) {
+
+        dataContent = linkList[i].getAttribute('data-content');
+        if (dataContent) {
+            if (dataContent.toUpperCase().indexOf(inputQuery) > -1) {
+                linkList[i].style.opacity = "";
+                linkList[i].classList.add("link--match");
+            } else {
+                linkList[i].style.opacity = 0.2;
+                linkList[i].classList.remove("link--match");
+            }
+        }
+        if (e.keyCode != 13) {
+            linkList[i].classList.remove("link--shake");
+        }
+    }
 }
+
+function openLink() {
+    linkListMatches = document.querySelectorAll(".link--match");
+
+    console.log(linkListMatches.length);
+        if (linkListMatches.length == 1) {
+            console.log("Opening…");
+            window.open(linkListMatches[0].getAttribute('href'), "_self");
+        }
+        else {
+            for (i = 0; i < linkListMatches.length; i++) {
+                linkListMatches[i].classList.add("link--shake");
+            }
+        }
+};
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 191) {
@@ -66,6 +87,9 @@ window.addEventListener("keydown", (e) => {
             e.preventDefault();
             elFilterInput.focus();
         }
+    }
+    if (e.keyCode == 13) {
+       openLink();
     }
 }, true);
 
@@ -76,18 +100,15 @@ function hideFilterInput() {
 
     linkList = document.querySelectorAll(".link");
     for (i = 0; i < linkList.length; i++) { 
-        linkList[i].style.opacity = ""; 
+        linkList[i].style.opacity = 1;
+        linkList[i].classList.remove("link--match");
     }
 }
-
 
 function focusFilterInput() {
     elFilterInput.classList.add("filter__input--appear");
     elFilterInput.classList.remove("filter__input--hidden");
 }
-
-
-
 </script>
 </body>
 </html>

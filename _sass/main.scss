@@ -63,7 +63,7 @@ main {
 }
 
 footer {
-    --muted-text-color: hsla(var(--base-h), 20%, 92%, 0.6);
+    --muted-text-color: hsla(var(--base-h), 20%, 92%, 0.7);
 
     width: 100%;
     font-size: .9rem;
@@ -79,6 +79,13 @@ footer {
             top: 3px;
             margin: 0 4px;
             fill: var(--muted-text-color)
+        }
+
+        .hotkey__custom {
+            position: relative;
+            border: 1px solid var(--muted-text-color);
+            border-radius: 4px;
+            padding: 2px 3px;
         }
     }
 }
@@ -196,6 +203,35 @@ footer {
 
     &:active {
         transform: scale(.99);
+    }
+
+    &--match {
+        opacity: 1
+    }
+
+    &--shake {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    @keyframes shake {
+        10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        
+        20%, 80% {
+          transform: translate3d(2px, 0, 0);
+        }
+      
+        30%, 50%, 70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+      
+        40%, 60% {
+          transform: translate3d(4px, 0, 0);
+        }
     }
 
     &__flexbox {
