@@ -14,12 +14,26 @@
     --minimum-width-link: 16rem;
     --columnn-and-row-gap: 1.35rem;
 
-
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
+    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .3);
+    --background-image--opacity: 30%;
+    --background-image--filter: grayscale(60%);
     --text-color: hsl(var(--base-h), 20%, 92%);
-    --border-color: hsl(var(--accent-h), 4%, 28%);
+    --text-color--muted: hsla(var(--base-h), 20%, 92%, 0.8);
 
     --easing: cubic-bezier(0.33, 1, 0.68, 1);
+
+    @media (prefers-color-scheme: light) {
+        --base-s: 25%;
+        --base-l: 80%;
+        
+        --accent-l: 98%;
+
+        --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
+        --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 15%), var(--accent-l), .3);
+        --text-color: hsl(var(--base-h), 20%, 12%);
+        --text-color--muted: hsla(var(--base-h), 20%, 12%, 0.8);
+    }
 }
 
 * {
@@ -49,8 +63,8 @@ body {
 
     background-size: cover;
     mix-blend-mode: soft-light;
-    opacity: 20%;
-    filter: grayscale(60%);
+    opacity: var(--background-image--opacity);
+    filter: var(--background-image--filter);
 
     position: absolute;
     top: 0;
@@ -63,12 +77,10 @@ main {
 }
 
 footer {
-    --muted-text-color: hsla(var(--base-h), 20%, 92%, 0.7);
-
     width: 100%;
     font-size: .9rem;
     padding: 1rem 2rem;
-    color: var(--muted-text-color);
+    color: var(--text-color--muted);
 
     .footer-wrapper {
         max-width: 1080px;
@@ -78,12 +90,12 @@ footer {
             position: relative;
             top: 3px;
             margin: 0 4px;
-            fill: var(--muted-text-color)
+            fill: var(--text-color--muted)
         }
 
         .hotkey__custom {
             position: relative;
-            border: 1px solid var(--muted-text-color);
+            border: 1px solid var(--text-color--muted);
             border-radius: 4px;
             padding: 2px 3px;
         }
@@ -114,7 +126,7 @@ footer {
     width: 100%;
     max-width: 820px;
     margin: 0 5rem;
-    background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 50%), .3);
+    background-color: var(--background-color--accent);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 16px;
@@ -183,7 +195,7 @@ footer {
 .link {
     color: var(--text-color);
     text-decoration: none;
-    background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 60%), .3);
+    background-color: var(--background-color--accent);
 
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.03);
@@ -255,6 +267,6 @@ footer {
     }
     
     &__description {
-       color: hsla(var(--base-h), 20%, 92%, 0.7);
+       color: var(--text-color--muted)
     }
 }
