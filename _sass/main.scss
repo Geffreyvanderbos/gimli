@@ -3,10 +3,12 @@
     // Cheatsheet (imagine the colours transition in-between: 
     // Hue: 1 = red, 30 = orange, 100 = green, 170 = light blue, 240 = blue, 300 = pink, 359 = red again.
 
+    // --base-h: 222;
     --base-h: 222;
     --base-s: 20%;
     --base-l: 20%;
     
+    // --accent-h: 222;
     --accent-h: 222;
     --accent-s: 47%;
     --accent-l: 88%;
@@ -16,6 +18,7 @@
 
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
     --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .3);
+    --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
     --background-image--opacity: 30%;
     --background-image--filter: grayscale(60%);
     --text-color: hsl(var(--base-h), 20%, 92%);
@@ -27,10 +30,11 @@
         --base-s: 25%;
         --base-l: 80%;
         
-        --accent-l: 98%;
+        --accent-l: 96%;
 
         --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
-        --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 15%), var(--accent-l), .3);
+        --background-color--accent: hsla(var(--accent-h), var(--accent-s), var(--accent-l), .4);
+        --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 5%), calc(var(--accent-l) - 5%));
         --text-color: hsl(var(--base-h), 20%, 12%);
         --text-color--muted: hsla(var(--base-h), 20%, 12%, 0.8);
     }
@@ -210,7 +214,7 @@ footer {
 
     &:hover {
         cursor: default;
-        background-color: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
+        background-color: var(--background-color--hover);
     }
 
     &:active {
