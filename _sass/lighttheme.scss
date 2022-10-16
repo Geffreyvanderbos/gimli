@@ -6,7 +6,8 @@
     --accent-l: 98%;
 
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
-    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 15%), var(--accent-l), .3);
+    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 15%), var(--accent-l), .5);
+    --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
     --text-color: hsl(var(--base-h), 20%, 12%);
     --text-color--muted: hsla(var(--base-h), 20%, 12%, 0.8);
     }

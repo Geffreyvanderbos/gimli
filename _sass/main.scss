@@ -8,14 +8,15 @@
     --base-l: 20%;
     
     --accent-h: 222;
-    --accent-s: 47%;
+    --accent-s: 46%;
     --accent-l: 88%;
 
     --minimum-width-link: 16rem;
     --columnn-and-row-gap: 1.35rem;
 
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
-    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .3);
+    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .4);
+    --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 52%));
     --background-image--opacity: 30%;
     --background-image--filter: grayscale(60%);
     --text-color: hsl(var(--base-h), 20%, 92%);
@@ -107,8 +108,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: 1px solid red;
 }
+
 
 .filter__input {
     width: 100%;
@@ -148,6 +149,20 @@ footer {
         filter: blur(5em);
         animation: blur-disappear .665s cubic-bezier(0.61, 1, 0.88, 1) forwards;
     }
+
+    &--start-hidden {
+        pointer-events: none;
+        opacity: 0;
+        filter: blur(5em);
+    }
+}
+
+.enter-indicator {
+    display: block;
+    position: relative;
+    left: -100px;
+    border: 1px solid var(--text-color--muted);
+    padding: 2px 3px;
 }
 
 @keyframes blur-disappear {
@@ -198,7 +213,7 @@ footer {
 
     &:hover {
         cursor: default;
-        background-color: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
+        background-color: var(--background-color--hover);
     }
 
     &:active {

@@ -15,7 +15,8 @@ layout: default
     {% endunless %}
     <main>
         <div class="filter">
-            <input id="filterInput" class="filter__input" type="text" placeholder="Type to filter…" autofocus />
+            <input id="filterInput" class="filter__input {% if site.openFilterOnLoad == false %}filter__input--start-hidden{% endif %}" type="text" placeholder="Type to filter…" {% if site.openFilterOnLoad %} autofocus {% endif %} />
+            <div class="enter-indicator">press enter to open</div>
         </div>
         <div class="wrapper">
             <div class="grid">
@@ -31,9 +32,10 @@ layout: default
             Press <span class="hotkey__custom">/</span> to filter. Hit <span class="hotkey__custom">enter</span> to navigate to a single match.</span>
         </div>
     </footer>
-{% if site.loadExternal == true %}
+{% if site.loadExternal %}
     {% include external.html %}
 {% endif %}
+
 <script>
 elFilterInput = document.getElementById("filterInput")
 elFilterInput.addEventListener("keyup", filterTextInput);
