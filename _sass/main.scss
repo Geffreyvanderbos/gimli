@@ -5,21 +5,30 @@
 
     --base-h: 222;
     --base-s: 20%;
-    --base-l: 15%;
+    --base-l: 20%;
     
     --accent-h: 222;
-    --accent-s: 47%;
+    --accent-s: 46%;
     --accent-l: 88%;
 
     --minimum-width-link: 16rem;
     --columnn-and-row-gap: 1.35rem;
 
-
     --background-color: hsl(var(--base-h), var(--base-s), var(--base-l));
+    --background-color--accent: hsla(var(--accent-h), calc(var(--accent-s) - 35%), calc(var(--accent-l) - 50%), .4);
+    --background-color--hover: hsl(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 52%));
+    --background-image--opacity: 30%;
+    --background-image--filter: grayscale(60%);
     --text-color: hsl(var(--base-h), 20%, 92%);
-    --border-color: hsl(var(--accent-h), 4%, 28%);
+    --text-color--muted: hsla(var(--base-h), 20%, 92%, 0.8);
 
     --easing: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -29,6 +38,9 @@ body {
     color: var(--text-color);
     font-family: 'Raleway', sans-serif;
     line-height: 150%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .background-image {
@@ -40,27 +52,132 @@ body {
 
     background-size: cover;
     mix-blend-mode: soft-light;
-    opacity: 20%;
-    filter: grayscale(60%);
+    opacity: var(--background-image--opacity);
+    filter: var(--background-image--filter);
 
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
 }
 
+main {
+    flex: 1;
+}
+
+footer {
+    width: 100%;
+    font-size: .9rem;
+    padding: 1rem 2rem;
+    color: var(--text-color--muted);
+
+    .footer-wrapper {
+        max-width: 1080px;
+        margin: 0 auto;
+        
+        .hotkey__icon {
+            position: relative;
+            top: 3px;
+            margin: 0 4px;
+            fill: var(--text-color--muted)
+        }
+
+        .hotkey__custom {
+            position: relative;
+            border: 1px solid var(--text-color--muted);
+            border-radius: 4px;
+            padding: 2px 3px;
+        }
+    }
+}
+
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    min-height: 100vh;
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 6vw auto 0 auto;
     padding: 1rem;
     position: relative;
     z-index: 2;
-    box-sizing: border-box;
+}
+
+.filter {
+    position: absolute;
+    bottom: 12vh;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter__input {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 5rem;
+    background-color: var(--background-color--accent);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1rem;
+    outline-style: none;
+    position: relative;
+    --move-up-distance: 10px;
+
+    &::placeholder {
+        font-weight: 400;
+        color: var(--text-color);
+        opacity: .2;
+    }
+
+    &--appear {
+        opacity: 1;
+        filter: blur(0);
+        animation: blur-appear .325s cubic-bezier(0.32, 0, 0.67, 0) forwards;
+        box-shadow: 
+        0 22px 34px -20px hsla(var(--base-h), calc(var(--base-s) - 15%), calc(var(--base-l) - 20%), .36),
+        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .24);
+        transform: translate3d(0, var(--move-up-distance), 0);
+    }
+
+    &--hidden {
+        pointer-events: none;
+        opacity: 0;
+        filter: blur(5em);
+        animation: blur-disappear .665s cubic-bezier(0.61, 1, 0.88, 1) forwards;
+    }
+
+    &--start-hidden {
+        pointer-events: none;
+        opacity: 0;
+        filter: blur(5em);
+    }
+}
+
+@keyframes blur-disappear {
+    0%  { 
+        opacity: 1;
+        filter: blur(0px); 
+    }
+    100% { 
+        opacity: 0;
+        filter: blur(5em);
+    }
+}
+
+@keyframes blur-appear {
+    0%  { 
+        opacity: 0;
+        filter: blur(5em);
+        transform: translate3d(0, var(--move-up-distance), 0);
+    }
+    100% { 
+        opacity: 1;
+        filter: blur(0px); 
+        transform: translate3d(0, 0, 0);
+    }
 }
 
 .grid {
@@ -72,27 +189,55 @@ body {
 .link {
     color: var(--text-color);
     text-decoration: none;
-    background-color: hsla(var(--accent-h), calc(var(--accent-s) - 30%), calc(var(--accent-l) - 60%), .3);
+    background-color: var(--background-color--accent);
 
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.03);
 
     box-shadow: 
         0 22px 34px -20px hsla(var(--base-h), calc(var(--base-s) - 15%), calc(var(--base-l) - 20%), .24),
-        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16),
-        0 4px 30px rgba(0, 0, 0, 0.1);
+        0 4px 14px -10px hsla(var(--base-h), calc(var(--base-s) - 10%), calc(var(--base-l) - 20%), .16);
+
     border-radius: 8px;
     padding: 1.35rem 1.5rem 1.25rem 1.2rem;
-    transition: background-color .145s var(--easing), transform .065s var(--easing);
+    transition: background-color .145s var(--easing), transform .065s var(--easing), opacity .265s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
         cursor: default;
-        background-color: hsl(var(--accent-h), calc(var(--accent-s) - 20%), calc(var(--accent-l) - 57%));
+        background-color: var(--background-color--hover);
     }
 
     &:active {
         transform: scale(.99);
+    }
+
+    &--match {
+        opacity: 1
+    }
+
+    &--shake {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    @keyframes shake {
+        10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        
+        20%, 80% {
+          transform: translate3d(2px, 0, 0);
+        }
+      
+        30%, 50%, 70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+      
+        40%, 60% {
+          transform: translate3d(4px, 0, 0);
+        }
     }
 
     &__flexbox {
@@ -116,6 +261,6 @@ body {
     }
     
     &__description {
-       color: hsla(var(--base-h), 20%, 92%, 0.7);
+       color: var(--text-color--muted)
     }
 }

@@ -9,19 +9,107 @@ layout: default
     {%include meta.html%}
 </head>
 
-<body class="">
+<body>
     {% unless site.backgroundImage == "" %}
         <div class="background-image" style="background-image: url({{site.backgroundImage}})"></div>
     {% endunless %}
-    <div class="wrapper">
-        <div class="grid">
-        {% unless site.links == "" %}
-            {% include links.html %}
-        {% endunless %}
+    <main>
+        <div class="filter">
+            <input id="filterInput" class="filter__input {% if site.openFilterOnLoad == false %}filter__input--start-hidden{% endif %}" type="text" placeholder="Type to filter…" {% if site.openFilterOnLoad %} autofocus {% endif %} />
         </div>
-    </div>
-{% if site.loadExternal == true %}
+        <div class="wrapper">
+            <div class="grid">
+            {% unless site.links == "" %}
+                {% include links.html %}
+            {% endunless %}
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-wrapper">
+        <span class="hotkey">
+            Press <span class="hotkey__custom">/</span> to filter. Hit <span class="hotkey__custom">enter</span> to navigate to a single match.</span>
+        </div>
+    </footer>
+{% if site.loadExternal %}
     {% include external.html %}
 {% endif %}
+
+<script>
+elFilterInput = document.getElementById("filterInput")
+elFilterInput.addEventListener("keyup", filterTextInput);
+elFilterInput.addEventListener("blur", hideFilterInput);
+elFilterInput.addEventListener("focus", focusFilterInput);
+
+var linkResultCount, linkList;
+linkList = document.querySelectorAll(".link");
+
+function filterTextInput(e) {
+    var input, inputQuery, dataContent, i;
+    input = elFilterInput;
+    inputQuery = input.value.toUpperCase();
+    
+    for (i = 0; i < linkList.length; i++) {
+
+        dataContent = linkList[i].getAttribute('data-content');
+        if (dataContent) {
+            if (dataContent.toUpperCase().indexOf(inputQuery) > -1) {
+                linkList[i].style.opacity = "";
+                linkList[i].classList.add("link--match");
+            } else {
+                linkList[i].style.opacity = 0.2;
+                linkList[i].classList.remove("link--match");
+            }
+        }
+        if (e.keyCode != 13) {
+            linkList[i].classList.remove("link--shake");
+        }
+    }
+}
+
+function openLink() {
+    linkListMatches = document.querySelectorAll(".link--match");
+
+    console.log(linkListMatches.length);
+        if (linkListMatches.length == 1) {
+            console.log("Opening…");
+            window.open(linkListMatches[0].getAttribute('href'), "_self");
+        }
+        else {
+            for (i = 0; i < linkListMatches.length; i++) {
+                linkListMatches[i].classList.add("link--shake");
+            }
+        }
+};
+
+window.addEventListener("keydown", (e) => {
+    if (e.keyCode == 191) {
+        if (document.activeElement.nodeName.toLowerCase() != elFilterInput) {
+            e.preventDefault();
+            elFilterInput.focus();
+        }
+    }
+    if (e.keyCode == 13) {
+       openLink();
+    }
+}, true);
+
+function hideFilterInput() {
+    elFilterInput.classList.remove("filter__input--appear");
+    elFilterInput.classList.add("filter__input--hidden");
+    elFilterInput.value = "";
+
+    linkList = document.querySelectorAll(".link");
+    for (i = 0; i < linkList.length; i++) { 
+        linkList[i].style.opacity = 1;
+        linkList[i].classList.remove("link--match");
+    }
+}
+
+function focusFilterInput() {
+    elFilterInput.classList.add("filter__input--appear");
+    elFilterInput.classList.remove("filter__input--hidden");
+}
+</script>
 </body>
 </html>

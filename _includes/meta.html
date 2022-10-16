@@ -1,12 +1,11 @@
-<!-- Include Meta Tags Here -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url}}">
+<!-- <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url}}"> -->
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
 <meta content='#{{ site.themeColor }}' name='theme-color'/>
 <title>{{ site.title }}</title>
-<link rel="stylesheet" href="{{ '/assets/css/styles.css?v=0.2' | relative_url}}">
-<meta property="og:title" content="Geffrey van der Bos - links to my profiles around the web" />
-<meta property="og:description" content="Find Geffrey around the web, like his LinkedIn profile or send him a direct Telegram message. He keeps the page updated as much as he can." />
-<meta property="og:image" content="{{ '/assets/images/og-image.png' | relative_url}}" />
+<link rel="stylesheet" href="{{ '/assets/css/styles.css?v=0.1' | relative_url}}">
+{% if site.automaticTheme %}
+  <link rel="stylesheet" href="{{ '/assets/css/lighttheme.css?v=0.1' | relative_url}}">
+{% endif %}
