@@ -24,8 +24,8 @@ backgroundImage:  https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixli
 # https://images.unsplash.com/photo-1665824274860-621d2202f658?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80
 # https://images.unsplash.com/photo-1665783734510-675749e54225?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80
 
-# Add your links here. The order stays the same. F
-# ind the names for the icons here: https://fonts.google.com/icons
+# Add your links here. The order stays the same.
+# Find the names for the icons here: https://fonts.google.com/icons
 # Google uses lowercase and underscore as spaces for icons.
 # Icons only work when loadExternal is set to true.
 
