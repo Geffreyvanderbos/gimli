@@ -1,4 +1,4 @@
-# Gimli – Your Minimalist Startpage for your Server
+# Gimli – A Minimalist Startpage for your Server
 
 ![A screenshot of Gimli's main page](https://github.com/Geffreyvanderbos/gimli/blob/main/showcase/screenshot_1.png)
 
