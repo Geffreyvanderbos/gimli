@@ -17,7 +17,7 @@ loadExternal: true
 themeColor: 1F2126
 
 # Enable light theme that switches with OS settings
-automaticTheme: false
+automaticTheme: true
 
 # Automatically open and give focus on the filter bar on page load
 openFilterOnLoad: true
@@ -32,8 +32,8 @@ backgroundImage:  https://images.unsplash.com/photo-1454496522488-7a8e488e8606?i
 links:
   - Name: Archivebox
     Description: Achiving the web
-    # URL: http://192.168.1.200:8112/
-    URL: \#
+    URL: http://192.168.1.200:8112/
+    # URL: \#
     Icon: archive
   
   - Name: Bookstack
@@ -61,6 +61,16 @@ links:
     URL: http://192.168.1.245/
     Icon: router
 
+  - Name: Ghostfolio
+    Description: Stock and EFT management
+    URL: http://192.168.1.200:3333/
+    Icon: ssid_chart
+
+  - Name: Homebox
+    Description: Manage home inventory
+    URL: http://192.168.1.200:3100/
+    Icon: inventory
+
   - Name: Homebridge
     Description: Manage Apple Homekit devices
     URL: http://192.168.1.200:8581/
@@ -68,7 +78,7 @@ links:
 
   - Name: Huginn
     Description: Webscrapers and notifiers
-    URL: http://192.168.1.200:8581/
+    URL: http://192.168.1.200:4750/
     Icon: circle_notifications
 
   - Name: Linkding
@@ -81,3 +91,32 @@ links:
     URL: http://192.168.1.200:9925/
     Icon: dinner_dining
 
+  - Name: Metube
+    Description: Archive Youtube videos
+    URL: http://192.168.1.200:8381/
+    Icon: smart_display
+
+  - Name: Muninn's Cockpit
+    Description: See how server is doing
+    URL: https://192.168.1.200:9090/
+    Icon: analytics
+
+  - Name: NGINX Proxy Manager
+    Description: Edit proxy hosts
+    URL: http://192.168.1.200:81/
+    Icon: alt_route
+
+  - Name: Paperless
+    Description: Manage household documents
+    URL: http://192.168.1.200:8111/
+    Icon: folder
+
+  - Name: PiHole
+    Description: Local DNS and ad-blocker
+    URL: http://192.168.1.200:8088/admin
+    Icon: dns
+
+  - Name: Portainer
+    Description: Manage docker containers
+    URL: http://192.168.1.200:9000//
+    Icon: set_meal
